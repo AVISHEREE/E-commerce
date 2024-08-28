@@ -3,7 +3,7 @@
  align-items: center;
  justify-content: center;
  gap: 50px ;
- background-color: rgba(28, 138, 211, 0.865);
+ background-color: rgba(99, 171, 219, 0.865);
  height: 3rem;
 }
 .nav-ul>li{
@@ -19,4 +19,24 @@
   text-align: center;
   width: 100%;
   background-color: black;
+}
+
+.inputBox{
+  display: block;
+  margin: 20px;
+  width: 200px;
+  height: 20px;
+}
+
+.body{
+  display: grid;
+  justify-content: center;
+}
+
+.signUpBtn{
+  width: 100px;
+  justify-content: center;
+  margin: auto;
+  background-color: rgba(99, 171, 219, 0.865);
+  
 }
