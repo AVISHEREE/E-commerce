@@ -21,4 +21,28 @@ const registerUser = async (req,res) =>{
     .json("User is successefully registered",user)
 }
 
-export {registerUser}
+const userLogin = async (req,res) =>{
+    const {email,password} = req.body
+    if([email,password].some((feild)=>feild?.trim()==="")){
+        res
+        .json("please enter all details")
+        return;
+    }
+    const user = User.findOne({email})
+    if(!user){
+        res.json("user isnt registered available")
+        return;
+    }
+    if(password!=user.password){
+        res.json("password is not correct")
+        return;
+    }
+    res
+    .satus(200)
+    .json(`login successfully ${user}`)
+}
+
+export {
+    registerUser,
+    userLogin
+}
