@@ -23,7 +23,8 @@
 
 .inputBox{
   display: block;
-  margin: 20px;
+  margin: 10px;
+  margin-left: 20px;
   width: 200px;
   height: 20px;
 }
@@ -33,7 +34,7 @@
   justify-content: center;
 }
 
-.signUpBtn{
+.signUpBtn,.sigInBtn{
   width: 100px;
   justify-content: center;
   margin: auto;
