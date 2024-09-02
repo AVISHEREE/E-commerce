@@ -5,8 +5,26 @@ const AddProduct = () =>{
     const [price, setPrice] = useState("")
     const [category, setCategory] = useState("")
     const [company, setCompany] = useState("")
-    const addCollection = () =>{
-        console.log(name,price,category,company);
+    const [error,setError] = useState(false)
+    const userID = JSON.parse(localStorage.getItem('user'))._id
+    const addCollection = async () =>{
+      if(!name || !price || !category || !company){
+        setError(true)
+        return false
+      }
+      const result = await fetch("http://localhost:5000/v1/product/add-product",{
+        method:"POST",
+        body:JSON.stringify({name,price,category,company,userID}),
+        headers:{
+         "Content-Type":"application/json"
+        }
+      });
+      const data = await result.json();
+      console.log(data);
+      setName("")
+      setPrice("")
+      setCategory("")
+      setCategory("")
     }
     return(
         <>
@@ -19,6 +37,7 @@ const AddProduct = () =>{
           value={name}
           placeholder="Enter your product name"
         />
+        {error&& !name && <span>please enter name</span>}
         <input
           className="inputBox"
           type="number"
@@ -26,6 +45,7 @@ const AddProduct = () =>{
           value={price}
           placeholder="Enter your product price"
         />
+        {error&& !price && <span>please enter price</span>}
         <input
           className="inputBox"
           type="text"
@@ -33,6 +53,7 @@ const AddProduct = () =>{
           value={category}
           placeholder="Enter your product category"
         />
+        {error&& !category && <span>please enter category</span>}
         <input
           className="inputBox"
           type="text"
@@ -40,8 +61,9 @@ const AddProduct = () =>{
           value={company}
           placeholder="Enter your product company"
         />
+        {error&& !company && <span>please enter comapny</span>}
         <button className="signUpBtn" onClick={addCollection}>
-          Sign Up
+          add 
         </button>
       </div>
         </>

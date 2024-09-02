@@ -12,6 +12,7 @@ const Nav = ()=>{
         <div>
             <ul className="nav-ul">
                 <li><Link to='/'>Home</Link></li>
+                <li><Link to='/products'>products</Link></li>
                 <li><Link to='/add'>Add product</Link></li>
                 <li><Link to='/update'>Update product</Link></li>
                 <li>{auth?<Link to='/profile'>Profile</Link>:<Link to='/login'>login</Link>}</li>
