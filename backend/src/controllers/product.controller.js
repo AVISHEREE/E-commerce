@@ -14,4 +14,15 @@ const addProduct = async (req, res) => {
   res.send(result);
 };
 
-export { addProduct };
+const showProducts = async (req,res)=>{
+  const data = await Product.find();
+  if(data.length>0){
+    res.send(data)
+  }
+  else{
+    res.send("no products found")
+  }
+  
+} 
+
+export { addProduct , showProducts };
