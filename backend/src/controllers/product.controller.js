@@ -25,4 +25,28 @@ const showProducts = async (req,res)=>{
   
 } 
 
-export { addProduct , showProducts };
+const deleteProduct = async (req,res) =>{
+try {
+    const data = req.params;  
+    const result = await Product.deleteOne({name:data.id});
+    if(result.deletedCount<1){
+      res.send("no data found")
+      return false
+    }
+    res.send(result)
+} catch (error) {
+  res.send(`Error in deleteing product ${error}`);
+}
+}
+
+const updateProduct = async (req,res) =>{
+  res.send(req.body)
+}
+
+const getSingleProduct = async(req,res)=>{
+  const data = req.params
+  const result = await Product.find({name:data.name})
+  res.send(result)
+}
+
+export { addProduct , showProducts , deleteProduct , updateProduct , getSingleProduct };
