@@ -40,13 +40,28 @@ try {
 }
 
 const updateProduct = async (req,res) =>{
-  res.send(req.body)
-}
-
-const getSingleProduct = async(req,res)=>{
-  const data = req.params
-  const result = await Product.find({name:data.name})
+  const data = req.body
+  const result = await Product.updateMany({_id:req.params.id},{
+    $set:req.body
+  })
   res.send(result)
 }
 
-export { addProduct , showProducts , deleteProduct , updateProduct , getSingleProduct };
+const getSingleProduct = async(req,res)=>{
+  const data = await req.params
+  const result = await Product.findOne({_id:data.id})
+  res.send(result)
+}
+
+const searchProduct = async(req,res) =>{
+  const data = await Product.find({
+    "$or":[
+      {name:{$regex:req.params.key}},
+      {category:{$regex:req.params.key}},
+      {company:{$regex:req.params.key}}
+    ]
+  })
+  res.send(data)
+}
+
+export { addProduct , showProducts , deleteProduct , updateProduct , getSingleProduct , searchProduct };
