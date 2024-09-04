@@ -24,7 +24,7 @@ const AddProduct = () =>{
       setName("")
       setPrice("")
       setCategory("")
-      setCategory("")
+      setCompany("")
     }
     return(
         <>
