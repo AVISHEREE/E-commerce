@@ -6,9 +6,7 @@ const ProductList = () =>{
     const [searchText, setSearchText] = useState("")
     useEffect(()=>{
         if(searchText !== ""){
-        setTimeout(() => {
-                searchProduct();
-            }, 500);
+            searchProduct();
         }else{
             showProducts()
         }
