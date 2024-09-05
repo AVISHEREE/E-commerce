@@ -28,7 +28,7 @@ const showProducts = async (req,res)=>{
 const deleteProduct = async (req,res) =>{
 try {
     const data = req.params;  
-    const result = await Product.deleteOne({name:data.id});
+    const result = await Product.deleteOne({_id:data.id});
     if(result.deletedCount<1){
       res.send("no data found")
       return false
