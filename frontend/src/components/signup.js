@@ -28,7 +28,8 @@ const SignUp = () => {
         alert(result.error);
       } else {
         console.log(result);
-        localStorage.setItem("user", JSON.stringify(result));
+        localStorage.setItem("user", JSON.stringify(result.user));
+        localStorage.setItem("auth", JSON.stringify(result.auth));
         navigate("/");
       }
     } catch (e) {

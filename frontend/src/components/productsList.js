@@ -16,7 +16,11 @@ const ProductList = () =>{
     }, [])
     const searchProduct = async () =>{
    if (searchText.trim()!=="") {
-         const data = await fetch(`http://localhost:5000/v1/product/search-product/${searchText}`)//serach the product in the database and it will show resul
+         const data = await fetch(`http://localhost:5000/v1/product/search-product/${searchText}`,{
+            headers:{
+                "Authorization":`${JSON.parse(localStorage.getItem('auth'))}`
+            }
+         })//serach the product in the database and it will show resul
          const result = await data.json();//data is converted into string 
          setProducts(result);//update the propduct list
    }
@@ -25,14 +29,23 @@ const ProductList = () =>{
    }
     }
     const showProducts = async () =>{
-        const data = await fetch("http://localhost:5000/v1/product/products");
+        const data = await fetch("http://localhost:5000/v1/product/products",{
+            headers:{
+                "Authorization":`${JSON.parse(localStorage.getItem('auth'))}`
+            }
+        });
         const result =  await data.json();
         setProducts(result)
     }
     const deleteProduct = async (id) =>{
         let confirmation = window.confirm("delete the product?");
         if(confirmation){
-        const data = await fetch(`http://localhost:5000/v1/product/delete-product/${id}`,{method:"DELETE"});
+        const data = await fetch(`http://localhost:5000/v1/product/delete-product/${id}`,{
+            method:"DELETE",
+            headers:{
+                "Authorization":`${JSON.parse(localStorage.getItem('auth'))}`
+            }
+        });
         const result = await data.json();
         console.log(result);
         if(result){

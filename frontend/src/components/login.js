@@ -25,8 +25,9 @@ const Login = () =>{
         alert(result.error)
     }
     
-        localStorage.setItem('user',JSON.stringify(result))
-        navigate('/')
+    localStorage.setItem('user',JSON.stringify(result.user))
+    localStorage.setItem('auth',JSON.stringify(result.auth))
+    navigate('/')
     
     }
     return(
